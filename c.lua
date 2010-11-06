@@ -16,7 +16,7 @@ function srn(x,n)
   return math.floor(x/2^n)
 end
 function ml(x,n)
-  -- n bit right
+  -- n mask left
   return math.floor(x%(2^n))
 end
 pbh(ml(0x22,8))
