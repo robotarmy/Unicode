@@ -4,7 +4,7 @@ local b = w:byte(2)
 local c = w:byte(3)
 
 function pbh(a)
-  print(string.format("%X",a))
+  print(string.format("%x",a))
 end
 
 function sln(x,n)
@@ -15,12 +15,20 @@ function srn(x,n)
   -- n bit right
   return math.floor(x/2^n)
 end
-function ml(x,n)
-  -- n mask left
+
+
+-- consider x as in base 2 form
+-- 0011 1100
+--
+-- mr(x,4)
+-- => 1100
+--
+function pmr(x,n)
+  -- n mask right
   return math.floor(x%(2^n))
 end
-pbh(ml(0x22,8))
-assert(ml(0x02,2) == 0x2)
+pbh(pmr(0x22,8))
+assert(pmr(0x02,2) == 0x2)
 
 print(a)
 pbh(a)
@@ -38,7 +46,7 @@ pbh(b)
 local l2 = srn(b,6)
 pbh(l2)
 assert(l2 == 2)
-local r6 = ml(b,6)
+local r6 = pmr(b,6)
 pbh(r6)
 assert(0xD == r6)
 local y = r6
@@ -48,7 +56,7 @@ pbh(c)
 local l2 = srn(c,6)
 pbh(l2)
 assert(l2 == 2)
-local r6 = ml(c,6)
+local r6 = pmr(c,6)
 pbh(r6)
 assert(0xF == r6)
 local x = r6
